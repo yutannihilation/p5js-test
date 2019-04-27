@@ -1,5 +1,5 @@
 const steps = 500;
-const lines = 100;
+const lines = 30;
 const wavefreq = 10; // 10 waves within a line
 const offset = 0;
 const wavemod = 10;
