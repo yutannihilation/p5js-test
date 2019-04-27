@@ -44,7 +44,7 @@ function drawWave() {
 function setup() {
   frameRate(1);
 
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(min(windowWidth, 900), min(windowHeight, 900));
   background(255);
   
   slider = createSlider(0, 255, 200, 0);
