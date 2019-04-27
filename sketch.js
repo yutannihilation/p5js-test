@@ -61,10 +61,18 @@ function setup() {
 }
 
 function draw() {
-  clear();
-  image(capture, 0, 0, width, width * capture.height / capture.width);
-  // filter(THRESHOLD, slider.value());
-  drawWave();
+  switch(frameCount % 4) {
+    case 0:
+      clear();
+      image(capture, 0, 0, width, width * capture.height / capture.width);
+      break;
+    case 1:
+      filter(THRESHOLD, slider.value() / 255);
+      break;
+    case 2:
+      drawWave();
+      break;
+  }
 }
 
 function mouseDragged() {
