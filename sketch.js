@@ -42,7 +42,7 @@ function drawWave() {
 }
 
 function setup() {
-  frameRate(1);
+  frameRate(3);
 
   createCanvas(min(windowWidth, 900), min(windowHeight, 900));
   background(255);
