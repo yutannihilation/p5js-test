@@ -57,7 +57,7 @@ function setup() {
   }
   
   capture = createCapture(VIDEO);
-  // capture.hide();
+  capture.hide();
 }
 
 function draw() {
