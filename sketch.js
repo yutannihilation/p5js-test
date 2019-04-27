@@ -1,5 +1,5 @@
 const steps = 500;
-const lines = 30;
+const lines = 100;
 const wavefreq = 10; // 10 waves within a line
 const offset = 0;
 const wavemod = 10;
@@ -7,6 +7,7 @@ const wavemod = 10;
 let waveheight;
 let capture;
 let slider;
+let checkbox;
 let yvalues = [];
 
 function drawWave() {
@@ -42,15 +43,21 @@ function drawWave() {
 }
 
 function setup() {
-  frameRate(1/3);
+  frameRate(1);
 
-  createCanvas(min(windowWidth, 900), min(windowHeight, 900));
+  createCanvas(windowWidth, windowHeight);
   background(255);
   
+  // threshold
+  let slider_label = createP('threshold');
+  slider_label.position(5, 0);
   slider = createSlider(0, 255, 200, 0);
-  slider.position(10, 10);
+  slider.position(80, 10);
   slider.style('width', '80px');
 
+  checkbox = createCheckbox('wave', true);
+  checkbox.position(10, 30);
+  
   let waveheight = height / lines / 2;
   for (let i = 0; i < steps; i++) {
     yvalues[i] = waveheight * sin(2 * PI * i / steps * wavefreq + offset);
@@ -61,17 +68,11 @@ function setup() {
 }
 
 function draw() {
-  switch(frameCount % 4) {
-    case 0:
-      clear();
-      image(capture, 0, 0, width, width * capture.height / capture.width);
-      break;
-    case 1:
-      filter(THRESHOLD, slider.value() / 255);
-      break;
-    case 2:
-      drawWave();
-      break;
+  clear();
+  image(capture, 0, 0, width, width * capture.height / capture.width);
+  // filter(THRESHOLD, slider.value() / 255);
+  if (checkbox.checked()) {
+    drawWave();
   }
 }
 
